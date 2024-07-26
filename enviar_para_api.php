@@ -18,8 +18,8 @@ if (isset($_SESSION['dados']) && isset($_POST['coluna_telefone']) && isset($_POS
     $url = "http://api.wordmensagens.com.br/send-text";
 
     // Definir os dados fixos para a API
-    $instance = "APY250724024529OWN802"; 
-    $token = "0U18P-Z2N-0493S"; 
+    $instance = "xxxxxxxxxxxxxxxx"; 
+    $token = "xxxxxxxxx"; 
 
     $resultados = array(); 
     $contagem_envios = 0; 
