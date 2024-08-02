@@ -8,16 +8,13 @@ if (isset($_SESSION['dados']) && isset($_POST['coluna_telefone']) && isset($_POS
 
     $codigo_pais = '55';
 
-    // Garantir que a mensagem está em UTF-8
+    
     $mensagem = mb_convert_encoding($mensagem, 'UTF-8', 'auto');
 
-    // Remover caracteres de controle da mensagem
     $mensagem = preg_replace('/[\x00-\x1F\x7F]/u', '', $mensagem);
 
-    // Configurar a URL da API do WordMensagens
     $url = "http://api.wordmensagens.com.br/send-text";
 
-    // Definir os dados fixos para a API
     $instance = "XXXXXXX"; 
     $token = "XXXXXXXXX"; 
 
@@ -30,23 +27,19 @@ if (isset($_SESSION['dados']) && isset($_POST['coluna_telefone']) && isset($_POS
         if (isset($row[$coluna_telefone])) {
             $telefone = $row[$coluna_telefone];
 
-            // Dividir múltiplos números, se houver
             $numeros = preg_split('/\s*\/\s*/', $telefone);
 
 
 
             foreach ($numeros as $numero) {
 
-                // Remover qualquer texto não numérico e manter apenas números
                 $telefone_formatado = preg_replace('/^\(\d+°\)\s*/', '', $numero);
                 $telefone_formatado = preg_replace('/\D/', '', $telefone_formatado);
 
-                // Adicionar o código do país se necessário
                 if (strlen($telefone_formatado) >= 10) { // Verifica se tem ao menos um DDD + número local
                     $telefone_formatado = $codigo_pais . $telefone_formatado;
                 }
 
-                // Verificar se o número formatado não está vazio e tem o formato correto
                 if (!empty($telefone_formatado) && strlen($telefone_formatado) >= 12) { // Código país (2) + DDD (2) + número local (8 ou 9)
                     // Configurar os dados para enviar para a API
                     $data_api = array(
@@ -65,20 +58,16 @@ if (isset($_SESSION['dados']) && isset($_POST['coluna_telefone']) && isset($_POS
                     );
                     $context = stream_context_create($options);
 
-                    // Enviar a requisição
                     $result = file_get_contents($url, false, $context);
 
-                    // Verificar resposta da API
                     $res123 = json_decode($result);
 
-                    // Verificar se houve um erro na resposta
                     $status_envio = 'false';
                     if (json_last_error() === JSON_ERROR_NONE) {
                         $erro = isset($res123->erro) ? $res123->erro : false;
                         $status_envio = $erro ? 'Erro ao Enviar' : 'Enviado com Sucesso';
                     }
 
-                    // Armazenar o resultado com ID
                     $resultados[] = array(
                         'id' => $id++,
                         'telefone' => $telefone_formatado,
@@ -108,7 +97,6 @@ if (isset($_SESSION['dados']) && isset($_POST['coluna_telefone']) && isset($_POS
         }
     }
 
-    // Exibir mensagem de "Enviando..." e gerar tabela HTML com resultados
     echo '
     <!DOCTYPE html>
     <html lang="pt-BR">
@@ -142,7 +130,6 @@ if (isset($_SESSION['dados']) && isset($_POST['coluna_telefone']) && isset($_POS
             <table>
                 <tr><th>ID</th><th>Telefone</th><th>Status</th></tr>';
 
-    // Gerar a tabela com resultados
     foreach ($resultados as $resultado) {
         echo '<tr>';
         echo '<td>' . htmlspecialchars($resultado['id']) . '</td>';
