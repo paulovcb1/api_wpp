@@ -14,6 +14,7 @@ Este projeto PHP permite que o usuário carregue uma planilha `.xlsx` contendo u
 - **PHP** 7.4 ou superior.
 - **Composer** para instalação da biblioteca PHPSpreadsheet.
 - **Biblioteca PHPSpreadsheet** para manipulação de arquivos Excel.
+- **API de disparo de mensagem** precisar usar alguma api tercerizada de envios de mensagem por whatsapp.
 
 ## Configuração do Projeto
 
