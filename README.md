@@ -24,3 +24,5 @@ Este projeto PHP permite que o usuário carregue uma planilha `.xlsx` contendo u
    ```bash
    git clone https://github.com/seu-usuario/nome-do-repositorio.git
    cd nome-do-repositorio
+
+   Inicie um servidor local como (XAMPP) e hospede o projeto.
