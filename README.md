@@ -1,27 +1,25 @@
-# Envio de Mensagens para Contatos via API
+# Envio de Mensagens em Massa via Planilha Excel e API
 
-Este projeto PHP permite carregar uma planilha de contatos, selecionar uma coluna com números de telefone e enviar mensagens em massa via uma API externa. Ele utiliza a biblioteca PHPSpreadsheet para manipular arquivos `.xlsx` e gerenciar o envio de mensagens de forma organizada.
+Este projeto PHP permite que o usuário carregue uma planilha `.xlsx` contendo uma lista de contatos, selecione a coluna com números de telefone e envie uma mensagem personalizada para esses contatos via uma API de envio de mensagens.
 
 ## Funcionalidades
 
-- **Upload de Arquivo**: Carregue um arquivo `.xlsx` com a lista de contatos.
+- **Upload de Arquivo `.xlsx`**: Carregue um arquivo Excel com os dados dos contatos.
 - **Seleção de Coluna**: Escolha a coluna que contém os números de telefone.
-- **Envio de Mensagens**: Envie uma mensagem personalizada para os números de telefone selecionados usando uma API de envio de mensagens.
-- **Exibição do Status**: Após o envio, o status de cada número (enviado com sucesso, número inválido, etc.) é exibido em uma tabela HTML.
+- **Envio de Mensagem em Massa**: Insira uma mensagem que será enviada para cada número na coluna selecionada.
+- **Exibição do Status de Envio**: Após o envio, o status de cada mensagem é exibido, indicando sucesso ou erro.
 
 ## Requisitos
 
-- PHP 7.4 ou superior
-- Composer
-- Biblioteca PHPSpreadsheet
+- **PHP** 7.4 ou superior.
+- **Composer** para instalação da biblioteca PHPSpreadsheet.
+- **Biblioteca PHPSpreadsheet** para manipulação de arquivos Excel.
 
-## Estrutura do Projeto
+## Configuração do Projeto
 
-```plaintext
-├── index.php                # Página inicial do projeto para upload de planilha
-├── processar_planilha.php   # Lida com o upload e processamento da planilha, salvando dados na sessão
-├── selecionar_coluna.php    # Interface para selecionar a coluna e inserir a mensagem
-├── enviar_para_api.php      # Processa o envio das mensagens e exibe o status
-├── style/
-│   └── style.css            # Estilos CSS para a interface do usuário
-└── README.md                # Documentação do projeto
+1. **Clonar o Repositório**
+
+   Clone este repositório para seu ambiente local:
+   ```bash
+   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   cd nome-do-repositorio
